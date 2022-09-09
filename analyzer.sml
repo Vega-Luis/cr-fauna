@@ -1,3 +1,5 @@
+structure Analyzer = struct
+
 (*returns a range from a list indicated by min and max*)
 fun getRange([], min, max, count) = []
     |   getRange(h::t, min, max, count) = if count > max then []
@@ -66,5 +68,7 @@ fun loadData path =
             (values := !values@[specimenTuple(String.tokens isDelimiter(valOf(TextIO.inputLine input handle e => (TextIO.closeIn; raise e))))] 
                 );
         TextIO.closeIn  input;
-        values
+        !values
     end;
+
+end
