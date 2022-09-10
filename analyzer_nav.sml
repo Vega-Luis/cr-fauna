@@ -23,6 +23,14 @@ fun printSpecimens [] = []
         printSpecimens t
     );
 
+fun printOuccurrences [] = []
+    |   printOuccurrences((class, ocurrences)::t) = (
+        print "---------------------------------------------------------------\n";
+        print ("| "^class^" | "^Int.toString(ocurrences)^" |\n");
+        printOuccurrences t
+
+    );
+
 fun showRange(path) =
     let
         val _ = print("\n Insert the min value: ");
@@ -87,6 +95,22 @@ fun showOrderAmount(path) =
         ""
     end;
 
+fun showResume(path) =
+    let
+        val data = Analyzer.loadData path;
+        val _ = print("\n   Total species: "^Int.toString(List.length data));
+        val _ = print("\n   Specie with the largest name: "^Analyzer.largestSpecieName(data, ""));
+        val _ = print("\n   Amount small species: "^Int.toString(Analyzer.getBySize(data, 0.0, 2.5)));
+        val _ = print("\n   Amount medium species: "^Int.toString(Analyzer.getBySize(data, 2.6, 5.0)));
+        val _ = print("\n   Amount big species: "^Int.toString(Analyzer.getBySize(data, 5.1, Real.maxFinite)));
+        val _ = print "\n---------------------------------------------------------------\n";
+        val _ = print ("| class | ocurrences |\n");
+        val ocurrences = Analyzer.classesOccurrences(data);
+        val _ = printOuccurrences(ocurrences);
+    in
+        ""
+    end;
+
 fun main() =
     let 
         val _ = print("\n   Insert the file path: ")
@@ -102,6 +126,7 @@ fun main() =
             |   3 => showDetails(path)
             |   4 => showSpecimensFromClass(path)
             |   5 => showOrderAmount(path)
+            |   6 => showResume(path)
             |   _ => ""
         )
     end;

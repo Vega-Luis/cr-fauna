@@ -21,6 +21,9 @@ fun getClass(position, class:string, order, specie, height, weight) = class;
 (*get the order from specimen tuple*)
 fun getOrder(position, class, order:string, specie, height, weight) = order;
 
+(*get the specie from specimen tuple*)
+fun getSpecie(_,_,_,specie,_,_) = specie;
+
 (*gets weights and heights higger than value from specimen tuple*)
 fun higgersThan([], value) = []
     |   higgersThan(h::t, value) = 
@@ -71,4 +74,28 @@ fun loadData path =
         !values
     end;
 
+fun classOccurrences([], class) = 0
+    |   classOccurrences(h::t, class) = 
+        if (getClass(h) = class) 
+            then 1 + classOccurrences(t, class)
+        else 
+            classOccurrences(t, class);
+
+fun classesOccurrences([]) = []
+    | classesOccurrences(h::t) =
+        [(getClass(h), classOccurrences(h::t, getClass(h)))]@classesOccurrences(List.filter (fn (_,y,_,_,_,_) => y <> getClass(h)) t);
+
+fun largestSpecieName([], largest) = largest
+    |   largestSpecieName(h::t, largest) = 
+        if (String.size(getSpecie(h)) > String.size(largest))
+            then largestSpecieName(t, getSpecie(h))
+        else 
+            largestSpecieName(t, largest);
+
+fun getBySize([],floor, ceiling) = 0 
+    |   getBySize(h::t, floor, ceiling) =
+        if (getHeight(h) >= floor andalso getHeight(h) <= ceiling) then
+            1 + getBySize(t, floor, ceiling)
+        else
+            getBySize(t, floor, ceiling);
 end
