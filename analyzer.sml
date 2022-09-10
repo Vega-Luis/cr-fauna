@@ -49,7 +49,9 @@ fun orderAmount([], order) = 0
 fun specimenTuple(position::class::order::specie::height::weight::nill) =
     (valOf(Int.fromString(position)), class, order, specie, valOf(Real.fromString(height)), valOf(Real.fromString(weight)));
 
+(* compares one char to determinate if it is token delimiter *)
 fun isDelimiter d = (d = #"," orelse d = #"\n");
+
 
 fun read path =
     let
@@ -74,6 +76,7 @@ fun loadData path =
         !values
     end;
 
+(* counts the occurrences of one class *)
 fun classOccurrences([], class) = 0
     |   classOccurrences(h::t, class) = 
         if (getClass(h) = class) 
@@ -81,10 +84,12 @@ fun classOccurrences([], class) = 0
         else 
             classOccurrences(t, class);
 
+(* counts the occurrences of each class *)
 fun classesOccurrences([]) = []
     | classesOccurrences(h::t) =
         [(getClass(h), classOccurrences(h::t, getClass(h)))]@classesOccurrences(List.filter (fn (_,y,_,_,_,_) => y <> getClass(h)) t);
 
+(* gets the specimen with the largest name *)
 fun largestSpecieName([], largest) = largest
     |   largestSpecieName(h::t, largest) = 
         if (String.size(getSpecie(h)) > String.size(largest))
@@ -92,6 +97,7 @@ fun largestSpecieName([], largest) = largest
         else 
             largestSpecieName(t, largest);
 
+(* gets especimens between an specified size range *)
 fun getBySize([],floor, ceiling) = 0 
     |   getBySize(h::t, floor, ceiling) =
         if (getHeight(h) >= floor andalso getHeight(h) <= ceiling) then

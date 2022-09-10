@@ -1,0 +1,15 @@
+1,Mammalia,Artiodactyla,M. noaengliae,16,36000
+2,Sauropsida,Crocodilia,C. crocodilus,2.5,170
+5,Sauropsida,Squamata,B. plumifroms,1.2,20
+3,Sauropsida,Squamata,Boa constrictor,5,70
+6,Amphibia,Gymnophiona,D. parviceps,0.15,0.023
+4,Aves,Passeriformes,G poliocephala,0.12,0.02
+7,Aves,Accipitriformes,M. guianensis,0.3,1
+8,Aves,Gruiformes,P. motacilla,0.25,0.016
+9,Aves,Tinamiformes,C. suoi,0.22,0.22
+11,Aves,Caprimulgidae,L semitorquatus,0.25,0.12
+13,Mammalia,Chiroptera,M. nigricans,0.5,0.06
+9,Amphibia,Anura,D. diastema,0.4,0.02
+14,Mammalia,Didelphimorphia,Didelphis marsupialis,0.4,2
+10,Mammalia,Artiodactyla,M americana,1.4,30
+15,Sauropsida,Squamata,Boa constrictor,5,70

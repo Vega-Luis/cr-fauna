@@ -1,0 +1,8 @@
+group is
+  $/basis.cm
+  $/smlnj-lib.cm 
+  creator.sml
+  str.sml
+  analyzer.sml
+  creator_nav.sml
+  analyzer_nav.sml
