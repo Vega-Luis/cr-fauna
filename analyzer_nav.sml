@@ -54,7 +54,7 @@ fun showHiggers(path) =
         val min = valOf(Real.fromString (Str.rmNewLines min));
         val data = Analyzer.loadData path;
         val result = Analyzer.higgersThan(data, min);
-        val ordered = ListMergeSort.sort (fn ((s:int,_,_,_,_,_), (t,_,_,_,_,_)) => s > t) data;
+        val ordered = ListMergeSort.sort (fn ((s:int,_,_,_,_,_), (t,_,_,_,_,_)) => s > t) result;
         val reversed = reverse ordered;
         val _ = printSpecimens reversed;
     in
