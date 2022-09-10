@@ -1,4 +1,6 @@
 structure CreatorNav = struct
+
+(* colects new specimen info and add it to the file *)
 fun addSpecimen(path:string) =
     let 
         val temp = print("\n**Add new specimen**\n");
@@ -22,6 +24,7 @@ fun addSpecimen(path:string) =
         row 
     end;
 
+(* shows the creator menu *)
 fun showMenu ():int  =
     let
         val _ = print("\n**Creator Main menu**\n");
@@ -34,6 +37,7 @@ fun showMenu ():int  =
         option
     end;
 
+(* runs the program and manages the main loop *)
 fun main filePath =
     let 
         val option = ref 0
