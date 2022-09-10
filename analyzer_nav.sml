@@ -1,6 +1,9 @@
 structure AnalyzerNav = struct
+(*reverses a list*)
 fun reverse ([]) = []
     | reverse (h::t) = reverse(t)@[h];
+
+(*show the analyezer menu*)
 fun showMenu() =
     let
         val _ = print("\n**Analyzer Menu**\n");
@@ -16,6 +19,8 @@ fun showMenu() =
     in 
         option
     end;
+
+(*prints a list of specimen tuples*)
 fun printSpecimens [] = []
     | printSpecimens ((position, class, order, specie, height, weight)::t) = (
         print "---------------------------------------------------------------\n";
@@ -23,6 +28,7 @@ fun printSpecimens [] = []
         printSpecimens t
     );
 
+(*prints a list of ouccurrence tuples*)
 fun printOuccurrences [] = []
     |   printOuccurrences((class, ocurrences)::t) = (
         print "---------------------------------------------------------------\n";
@@ -30,7 +36,7 @@ fun printOuccurrences [] = []
         printOuccurrences t
 
     );
-
+(* Ask for min and max values to print range *)
 fun showRange(path) =
     let
         val _ = print("\n Insert the min value: ");
@@ -47,6 +53,7 @@ fun showRange(path) =
         "" 
     end;
 
+(* Show especimens higger than the specified value *)
 fun showHiggers(path) =
     let
         val _ = print("\n Insert the min value: ");
@@ -61,6 +68,7 @@ fun showHiggers(path) =
         ""
     end;
 
+(* shows details about a selected ranking position *)
 fun showDetails(path) =
     let 
         val _ = print("\n Insert the position: ");
@@ -90,7 +98,7 @@ fun showOrderAmount(path) =
         val order = Str.rmNewLines(valOf(TextIO.inputLine TextIO.stdIn));
         val data = Analyzer.loadData path;
         val result = Analyzer.orderAmount(data, order);
-        val _ = print(" "^Int.toString(result)^"\n");
+        val _ = print(" Specimen amount: "^Int.toString(result)^"\n");
     in
         ""
     end;
